@@ -16,6 +16,7 @@ public class GestorConjuntos {
         int escolha;
 
         do {
+            System.out.println("---------------------------------------------------");
             System.out.println("Escolha uma opção:");
             System.out.println("1 - Adicionar número ao grupo X");
             System.out.println("2 - Adicionar número ao grupo Y");
@@ -25,7 +26,9 @@ public class GestorConjuntos {
             System.out.println("6 - Diferença X - Y");
             System.out.println("7 - Diferença Y - X");
             System.out.println("0 - Encerrar");
-
+            System.out.print("Opção: ");
+            System.out.println("");
+           
             escolha = entrada.nextInt();
 
             switch(escolha) {
@@ -60,12 +63,13 @@ public class GestorConjuntos {
                     qtdZ = diferencaConjuntos(grupoX, qtdX, grupoY, qtdY, grupoZ);
                     System.out.println("Diferença X - Y:");
                     mostrar(grupoZ, qtdZ);
+                
                     break;
 
                 case 7:
                     qtdZ = diferencaConjuntos(grupoY, qtdY, grupoX, qtdX, grupoZ);
                     System.out.println("Diferença Y - X:");
-                    mostrar(grupoZ, qtdZ);
+                    mostrar(grupoZ , qtdZ);
                     break;
 
                 case 0:
@@ -166,6 +170,7 @@ public class GestorConjuntos {
                 boolean repetido = false;
                 for (int k = 0; k < tamC; k++) {
                     if (C[k] == A[i]) {
+
                         repetido = true;
                         break;
                     }
