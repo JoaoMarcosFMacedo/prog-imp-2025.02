@@ -32,15 +32,22 @@ public class Objeto{
 
         System.out.print("Dê a descriçãos do produto: ");
         pdt.descricao = scanner.nextLine();
-
+        
         System.out.print("Qual o preço do produto: ");
         pdt.precoUnitario = scanner.nextDouble();
-
+        
+        if( pdt.precoUnitario < 0){
+            System.out.print("Preço invalido!");
+        }
         // nextLine para receber o enter do Double;
         scanner.nextLine();
 
         System.out.print("Têm quantos produtos no estoque? ");
         pdt.qtdEstoque = scanner.nextInt();
+
+        if(pdt.qtdEstoque < 0 ){
+            System.out.println("O produto está em falta!");
+        }
         // nextLine para receber o enter do int;
         scanner.nextLine();
     } 
