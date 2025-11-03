@@ -35,6 +35,7 @@ public class Objeto{
         
         System.out.print("Qual o preço do produto: ");
         pdt.precoUnitario = scanner.nextDouble();
+        // fazer um laço para não aceitar valores menor que zero.
         
         if( pdt.precoUnitario < 0){
             System.out.print("Preço invalido!");
