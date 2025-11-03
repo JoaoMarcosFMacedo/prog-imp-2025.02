@@ -8,13 +8,17 @@ public class Objeto{
         
         Produto produto = new Produto(), produto1 = new Produto();
         
-        System.out.print("Digitação do produto 01 :");
+        System.out.println("----- Digitação do produto 01 -----");
         scanProduto(produto);
         
-        System.out.println("Digitação do produto 02: ");
+        System.out.println("----- Digitação do produto 02 -----");
         scanProduto(produto1);
+        
+        System.out.println("--------- impreções ----------");
+        imprimirProduto(produto);
 
-        System.out.println(produto);
+        System.out.println("--------- impreções ----------");
+        imprimirProduto(produto1);
 
 
         scanner.close();
@@ -37,9 +41,13 @@ public class Objeto{
 
         System.out.print("Têm quantos produtos no estoque? ");
         pdt.qtdEstoque = scanner.nextInt();
-        
         // nextLine para receber o enter do int;
         scanner.nextLine();
     } 
-    
+    public static void imprimirProduto(Produto pdt){
+        System.out.println(pdt.titulo);
+        System.out.println(pdt.descricao);
+        System.out.println(pdt.precoUnitario);
+        System.out.println(pdt.qtdEstoque);
+    }   
 }
