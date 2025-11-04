@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Objeto{
 
     public static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         
         Produto produto = new Produto(), produto1 = new Produto();
         
@@ -14,10 +14,10 @@ public class Objeto{
         System.out.println("----- Digitação do produto 02 -----");
         scanProduto(produto1);
         
-        System.out.println("--------- impreções do produto 1 ----------");
+        System.out.println("--------- impressões do produto 1 ----------");
         imprimirProduto(produto);
 
-        System.out.println("--------- impreções do produto 2 ----------");
+        System.out.println("--------- impressões do produto 2 ----------");
         imprimirProduto(produto1);
 
 
@@ -32,26 +32,16 @@ public class Objeto{
 
         System.out.print("Dê a descriçãos do produto: ");
         pdt.descricao = scanner.nextLine();
-        
-        do{
-            System.out.print("Qual o preço do produto: ");
-            pdt.precoUnitario = scanner.nextDouble();
-            if( pdt.precoUnitario < 0){
-                System.out.println("Preço invalido!");
-            }
 
-        }while( pdt.precoUnitario < 0);
-        // fazer um laço para não aceitar valores menor que zero.
+        System.out.print("Qual o preço do produto: ");
+        pdt.precoUnitario = scanner.nextDouble();
         
         // nextLine para receber o enter do Double;
         scanner.nextLine();
 
-        System.out.print("Têm quantos produtos no estoque? ");
+        System.out.print("Quantos produtos no estoque? ");
         pdt.qtdEstoque = scanner.nextInt();
 
-        if(pdt.qtdEstoque < 0 ){
-            System.out.println("O produto está em falta!");
-        }
         // nextLine para receber o enter do int;
         scanner.nextLine();
     } 

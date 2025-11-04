@@ -1,6 +1,6 @@
 package Objeto;
 import java.util.Scanner;
-public class main {
+public class Main {
     public static void main(String[] args) {
         Aluno aluno = new Aluno();
         Professor professor = new Professor();
