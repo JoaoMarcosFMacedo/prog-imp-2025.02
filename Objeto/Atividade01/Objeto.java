@@ -14,10 +14,10 @@ public class Objeto{
         System.out.println("----- Digitação do produto 02 -----");
         scanProduto(produto1);
         
-        System.out.println("--------- impreções ----------");
+        System.out.println("--------- impreções do produto 1 ----------");
         imprimirProduto(produto);
 
-        System.out.println("--------- impreções ----------");
+        System.out.println("--------- impreções do produto 2 ----------");
         imprimirProduto(produto1);
 
 
@@ -33,13 +33,16 @@ public class Objeto{
         System.out.print("Dê a descriçãos do produto: ");
         pdt.descricao = scanner.nextLine();
         
-        System.out.print("Qual o preço do produto: ");
-        pdt.precoUnitario = scanner.nextDouble();
+        do{
+            System.out.print("Qual o preço do produto: ");
+            pdt.precoUnitario = scanner.nextDouble();
+            if( pdt.precoUnitario < 0){
+                System.out.println("Preço invalido!");
+            }
+
+        }while( pdt.precoUnitario < 0);
         // fazer um laço para não aceitar valores menor que zero.
         
-        if( pdt.precoUnitario < 0){
-            System.out.print("Preço invalido!");
-        }
         // nextLine para receber o enter do Double;
         scanner.nextLine();
 
