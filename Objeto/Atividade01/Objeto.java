@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Objeto{
 
     public static Scanner scanner = new Scanner(System.in);
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
         
         Produto produto = new Produto(), produto1 = new Produto();
         
@@ -33,7 +33,7 @@ public class Objeto{
         System.out.print("Dê a descriçãos do produto: ");
         pdt.descricao = scanner.nextLine();
 
-        System.out.print("Qual o preço do produto: ");
+        System.out.print("Qual o preço unitário do produto: ");
         pdt.precoUnitario = scanner.nextDouble();
         
         // nextLine para receber o enter do Double;
@@ -46,9 +46,9 @@ public class Objeto{
         scanner.nextLine();
     } 
     public static void imprimirProduto(Produto pdt){
-        System.out.println(pdt.titulo);
-        System.out.println(pdt.descricao);
-        System.out.println(pdt.precoUnitario);
-        System.out.println(pdt.qtdEstoque);
+        System.out.println("Nome: " + pdt.titulo);
+        System.out.println("Descrição: " + pdt.descricao);
+        System.out.println("Preço: " + pdt.precoUnitario);
+        System.out.println("Quantidade: " + pdt.qtdEstoque);
     }   
 }
