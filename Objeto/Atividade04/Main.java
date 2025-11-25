@@ -1,0 +1,242 @@
+package Objeto.Atividade04;
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner input = new Scanner(System.in);
+    public static final int QTD = 3;
+
+    public static void main(String[] args){
+        Produto[] produto = new Produto[QTD];
+        int escolha;
+        int tam = 0;
+
+        do{
+            System.out.println("\n--- MENU ---");
+            System.out.println("1 cadastrar novo produto");
+            System.out.println("2 listar os produtos");
+            System.out.println("3 Filtrar por categoria");
+            System.out.println("4 Ordenar por categoria");
+            System.out.println("5 Remover Elemento por nome");
+            System.out.println("6 Atualizar preço por nome");
+            System.out.println("7 Listagem com subtotal do valor em estoque por categoria");
+            System.out.println("0 Sair");
+            System.out.print("Digite Sua Opção: ");
+
+            if (input.hasNextInt()) {
+                escolha = input.nextInt();
+            } else {
+                System.out.println("Entrada inválida. Por favor, digite um número.");
+                input.next();
+                escolha = -1;
+            }
+
+            input.nextLine();
+            
+            System.out.println("--------------------");
+
+            switch (escolha) {
+                case 1:
+                    tam = cadastrar(produto, tam);
+                    break;
+                case 2:
+                    if (tam == 0) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    }
+                    for(int i = 0; i<tam; i++){ 
+                        imprimir(produto[i]);
+                    }
+                    break;
+                case 3:
+                    System.out.print("Qual categoria: ");
+                    String categoriaFiltro = input.nextLine();
+                    filtro(produto, tam, categoriaFiltro);
+                    break;
+                case 4: 
+                    if (tam > 1) {
+                        ordernar(produto, tam);
+                        System.out.println("Produtos ordenados por categoria.");
+                    } else {
+                         System.out.println("É necessário ter pelo menos dois produtos para ordenar.");
+                    }
+                    break;
+                case 5:
+                    tam = remover(produto, tam);
+                    break;
+                case 6:
+                    atualizarPreco(produto, tam);      
+                    break;
+                case 7:
+                    listagem(produto, tam);           
+                    break;
+                case 0:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    if (escolha != -1) {
+                        System.out.println("Opção inválida. Tente outro número.");
+                    }
+                    break;
+            }
+        } while(escolha != 0);
+
+        input.close();
+    }
+
+    public static int cadastrar(Produto[] produtos, int tam){
+        if(tam >= produtos.length){
+            System.out.println("Vetou cheio. Não é possível cadastrar mais produtos (Limite: " + produtos.length + ").");
+            return tam;
+        }    
+
+        Produto produto = new Produto();
+
+        System.out.print("Nome do Produto: ");
+        produto.nome = input.nextLine();
+        System.out.print("Descrição do Produto: ");
+        produto.descricao = input.nextLine();
+        System.out.print("Categoria do Produto: ");
+        produto.categoria = input.nextLine();
+        
+        System.out.print("Quantidade no Estoque: ");
+        while (!input.hasNextInt()) {
+            System.out.println("Entrada inválida. Digite um número inteiro para a quantidade em estoque.");
+            input.next();
+            System.out.print("Quantidade no Estoque: ");
+        }
+        produto.estoque = input.nextInt();
+        
+        System.out.print("Quantidade Mínima Que o Estoque Deve Ter: ");
+         while (!input.hasNextInt()) {
+            System.out.println("Entrada inválida. Digite um número inteiro para a quantidade mínima.");
+            input.next();
+            System.out.print("Quantidade Mínima Que o Estoque Deve Ter: ");
+        }
+        produto.qtdMinima = input.nextInt();
+        
+        System.out.print("Preço do Produto: ");
+         while (!input.hasNextDouble()) {
+            System.out.println("Entrada inválida. Digite um número para o preço.");
+            input.next();
+            System.out.print("Preço do Produto: ");
+        }
+        produto.preco = input.nextDouble();
+        input.nextLine();
+
+        produtos[tam] = produto;
+        System.out.println("Produto '" + produto.nome + "' cadastrado com sucesso.");
+        return tam + 1;
+    }
+
+    public static void imprimir(Produto produto){       
+        System.out.println("\n--- DETALHES DO PRODUTO ---");
+        System.out.println("Nome: " + produto.nome);
+        System.out.println("Descrição: " + produto.descricao);
+        System.out.println("Categoria: " + produto.categoria);
+        System.out.println("Quantidade em Estoque: " + produto.estoque);           
+        System.out.println("Quantidade Mínima: " + produto.qtdMinima);
+        System.out.printf("Preço do Produto: R$ %.2f\n", produto.preco);
+        System.out.println("Valor total em estoque (R$): " + (produto.preco * produto.estoque));
+        if (produto.estoque < produto.qtdMinima) {
+             System.out.println("** AVISO: Estoque abaixo do mínimo! **");
+        }
+        System.out.println("---------------------------");
+    }
+
+    public static void filtro (Produto[] produto, int tam, String categoriaBusca){
+        boolean encontrado = false;
+        System.out.println("\n--- FILTRO POR CATEGORIA: " + categoriaBusca.toUpperCase() + " ---");
+        for(int i = 0; i < tam; i++){
+            if(produto[i].categoria.equalsIgnoreCase(categoriaBusca)){
+                imprimir(produto[i]);
+                encontrado = true;
+            }
+        }
+        if (!encontrado) {
+             System.out.println("Nenhum produto encontrado na categoria '" + categoriaBusca + "'.");
+        }
+    }
+
+    public static void ordernar (Produto[] produto, int tam){ 
+        for (int i = 0; i < tam - 1; i++) {
+            for (int j = 0; j < tam - 1 - i; j++) {
+                if (produto[j].categoria.compareToIgnoreCase(produto[j + 1].categoria) > 0) {
+                    Produto aux = produto[j];
+                    produto[j] = produto[j + 1];
+                    produto[j + 1] = aux;
+                }
+            }
+        }
+    }
+    
+    public static int remover (Produto[] produto, int tam){    
+        System.out.print("Digite o nome do produto que você quer remover: ");
+        String nomeRemover = input.nextLine();
+
+        for (int i = 0; i < tam; i++) {
+            if (produto[i].nome.equalsIgnoreCase(nomeRemover)) {           
+                for (int j = i; j < tam - 1; j++) {
+                    produto[j] = produto[j + 1];
+                }
+                produto[tam - 1] = null;
+                System.out.println("Produto '" + nomeRemover + "' removido!");
+                return tam - 1;
+            }
+        }
+        System.out.println("Produto '" + nomeRemover + "' não encontrado.");
+        return tam;
+    }
+    
+    public static void atualizarPreco (Produto[] produto, int tam){
+        System.out.print("Qual o produto que você irá trocar o preço? ");
+        String nome = input.nextLine();
+
+        for (int i = 0; i < tam; i++) {
+            if (produto[i].nome.equalsIgnoreCase(nome)) {
+                System.out.print("Digite o novo preço: ");
+                while (!input.hasNextDouble()) {
+                    System.out.println("Entrada inválida. Digite um número para o preço.");
+                    input.next();
+                    System.out.print("Digite o novo preço: ");
+                }
+                double novoPreco = input.nextDouble();
+                input.nextLine();
+                
+                produto[i].preco = novoPreco;
+                System.out.printf("Preço do produto '%s' atualizado para R$ %.2f com sucesso!\n", nome, novoPreco);
+                return;
+            }
+        }
+        System.out.println("Produto '" + nome + "' não encontrado.");
+    }
+    
+    public static double listagem(Produto[] produto, int tam) {
+
+        System.out.print("Digite a categoria: ");
+        String categoriaBuscada = input.nextLine();
+
+        double subtotal = 0;
+        boolean achou = false;
+
+        System.out.println("\n--- PRODUTOS DA CATEGORIA: " + categoriaBuscada.toUpperCase() + " ---");
+        for (int i = 0; i < tam; i++) {
+            if (produto[i].categoria.equalsIgnoreCase(categoriaBuscada)) {
+
+                System.out.println("Nome: " + produto[i].nome);
+                System.out.printf("Preço: R$ %.2f\n", produto[i].preco);
+                System.out.println("Quantidade: " + produto[i].estoque);
+                System.out.println("------------------------");
+
+                subtotal += produto[i].preco * produto[i].estoque;
+                achou = true;
+            }
+        }
+
+        if (!achou) {
+            System.out.println("Nenhum produto encontrado para esta categoria.");
+            return 0;
+        }
+
+        System.out.printf("Subtotal do valor em estoque para a categoria \"%s\": R$ %.2f\n", categoriaBuscada, subtotal);
+        return subtotal;
+    }   
+}
