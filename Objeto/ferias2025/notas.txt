@@ -1,0 +1,31 @@
+Os pontos a serem estudados neste périodo de férias será:
+ - Estururas de repetições/laço.
+ - Ordenações.
+ - Buscas sequencial e binária.
+ - inserção direta, seleção direta e método da bolha.
+
+ Mémoria > é uma sequencia de células de armazenamaneto;
+
+
+      0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 
+    |   |   |   |   |   |   |   |   |   |   |    | 
+
+Uma variável é um caontainer que é composto por uma ou mais céluas de armazenamento.
+
+
+      0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 
+    |   |   |   | 5 | 7 |10 | 7 |   |   |   |    | 
+
+Uma variável contém: 
+    - nome
+    - tipo ( String, Int, Boolean ou Double)
+    - conteúdo
+    - endereço ( a posiçãoq que dá variável na memória )
+
+
+Declaração de uma variável de um vetor{
+    int []vetor;
+}
+Inicialização do vetor{
+    vetor = new int[tamanho];
+}
