@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+    public static FolhaPagamento fpg = new FolhaPagamento();
     public static final int QtdReper = 5;
 
     public static void main(System [] args ){

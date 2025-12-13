@@ -1,4 +1,4 @@
-package Objeto;
+package testes;
 
 public class Professor{
     String nome_professor;

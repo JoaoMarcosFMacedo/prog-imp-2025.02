@@ -1,9 +1,9 @@
-package Objeto;
+package testes;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Aluno aluno = new Aluno();
-        Professor professor = new Professor();
+        // Professor professor = new Professor();
         Scanner scanner = new Scanner(System.in);
         
         System.out.print("Digite sua idade:");
@@ -19,19 +19,22 @@ public class Main {
 
         System.out.print("Digite sua nota 02: ");
         aluno.nota02 = scanner.nextDouble();
-
+        
         
         imprimir(aluno);
         
         System.out.println();
-
+        
         System.out.println("Méida = " +calculoMedia(aluno));
+        
+        scanner.close();
     }
-
+    
     public static void imprimir(Aluno al){
         System.out.printf(" (%s, %d anos, %.1f, %.1f)", al.nome_aluno, al.idade, al.nota01, al.nota02);
     }
     public static double calculoMedia(Aluno al){
         return(al.nota01 * 2 + al.nota02 * 3 )/5;
+        
     }
 }

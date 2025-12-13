@@ -1,4 +1,4 @@
-package Objeto;
+package testes;
 
 public class Aluno {
     String nome_aluno;
